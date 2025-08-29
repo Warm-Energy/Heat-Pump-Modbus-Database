@@ -126,6 +126,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [Warm Energy Labs Ltd](https://warm.energy) specializes in heat pump monitoring and control systems. We use this database internally for our production systems and maintain it as an open-source resource for the community.
 
+## Acknowledgments
+
+This project was made possible thanks to the work of the following repositories:
+- [ZimKev/MIM-B19n_Modbus](https://github.com/ZimKev/MIM-B19n_Modbus) - Samsung heat pump Modbus documentation
+- [aerona-chofu-ashp/modbus](https://github.com/aerona-chofu-ashp/modbus) - Grant Aerona/Chofu heat pump Modbus mappings
+
 ## Related Projects
 
 - [Home Assistant Modbus Integration](https://www.home-assistant.io/integrations/modbus/)
