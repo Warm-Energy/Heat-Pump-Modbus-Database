@@ -1,0 +1,852 @@
+# ESPHome configuration for heat pump modbus interface
+# Generated from modbus register definitions
+# Date: 2025-08-29 11:02:06
+
+esphome:
+  name: 'samsung-modbus'
+  platform: ESP32
+  board: esp32dev
+wifi:
+  ssid: '!secret wifi_ssid'
+  password: '!secret wifi_password'
+  ap:
+    ssid: 'HeatPump-Fallback'
+    password: '!secret ap_password'
+logger:
+  level: DEBUG
+  baud_rate: 0
+api:
+  encryption:
+    key: '!secret api_encryption_key'
+ota:
+  platform: esphome
+  password: '!secret ota_password'
+web_server:
+  port: 80
+uart:
+  id: mod_bus
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+  stop_bits: 1
+  parity: EVEN
+modbus:
+  id: modbus1
+  uart_id: mod_bus
+modbus_controller:
+  id: heatpump
+  address: 2
+  modbus_id: modbus1
+  setup_priority: -10
+  update_interval: 30s
+switch:
+  - name: Quiet Control
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_quiet_control
+    register_type: holding
+    address: 78
+    bitmask: 1
+    icon: 'mdi:information'
+  - name: Away Function
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_away_function
+    register_type: holding
+    address: 79
+    bitmask: 1
+    icon: 'mdi:information'
+  - name: Buzzer
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_buzzer
+    register_type: holding
+    address: 3
+    bitmask: 1
+    icon: 'mdi:information'
+  - name: Brauchwasser
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_brauchwasser
+    register_type: holding
+    address: 72
+    bitmask: 1
+    icon: 'mdi:information'
+sensor:
+  - name: Modbus Interface Error
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_modbus_interface_error
+    register_type: holding
+    address: 0
+    value_type: U_WORD
+    icon: 'mdi:alert-circle'
+  - name: Outdoor Unit Error
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_outdoor_unit_error
+    register_type: holding
+    address: 1
+    value_type: U_WORD
+    icon: 'mdi:alert-circle'
+  - name: Defrost Operation
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_defrost_operation
+    register_type: holding
+    address: 2
+    value_type: U_WORD
+    icon: 'mdi:information'
+  - name: Outside Test
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_outside_test
+    register_type: holding
+    address: 4
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Operation Mode
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_operation_mode
+    register_type: holding
+    address: 5
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Compressor Status
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_status
+    register_type: holding
+    address: 6
+    value_type: U_WORD
+    icon: 'mdi:air-conditioner'
+    skip_updates: 1
+  - name: Hot Gas Status
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_hot_gas_status
+    register_type: holding
+    address: 7
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Liquid Valuve Status
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_liquid_valuve_status
+    register_type: holding
+    address: 8
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Evi Bypass
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_evi_bypass
+    register_type: holding
+    address: 9
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: '4-way Valve Status'
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: 'ehs_4-way_valve_status'
+    register_type: holding
+    address: 10
+    value_type: U_WORD
+    icon: 'mdi:pipe-valve'
+    skip_updates: 1
+  - name: Base Heater
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_base_heater
+    register_type: holding
+    address: 11
+    value_type: U_WORD
+    icon: 'mdi:radiator'
+    skip_updates: 1
+  - name: Phe Heater
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_phe_heater
+    register_type: holding
+    address: 12
+    value_type: U_WORD
+    icon: 'mdi:radiator'
+    skip_updates: 1
+  - name: Outside Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_outside_temp
+    register_type: holding
+    address: 13
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 2
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: High Pressure
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_high_pressure
+    register_type: holding
+    address: 14
+    value_type: U_WORD
+    unit_of_measurement: kgfcm2
+    device_class: pressure
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    icon: 'mdi:gauge'
+    skip_updates: 1
+  - name: Low Pressure
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_low_pressure
+    register_type: holding
+    address: 15
+    value_type: U_WORD
+    unit_of_measurement: kgfcm2
+    device_class: pressure
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    icon: 'mdi:gauge'
+    skip_updates: 1
+  - name: Discharge Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_discharge_temp
+    register_type: holding
+    address: 16
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Compressor Current
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_current
+    register_type: holding
+    address: 17
+    value_type: U_WORD
+    unit_of_measurement: A
+    device_class: current
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:air-conditioner'
+    skip_updates: 1
+  - name: Heat Exchanger Outlet Temperature Condout
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_heat_exchanger_outlet_temperature_condout
+    register_type: holding
+    address: 18
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Suction Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_suction_temperature
+    register_type: holding
+    address: 19
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Evi In Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_evi_in_temperature
+    register_type: holding
+    address: 20
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Evi Out Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_evi_out_temperature
+    register_type: holding
+    address: 21
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Modulation Fan
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_modulation_fan
+    register_type: holding
+    address: 22
+    value_type: U_WORD
+    unit_of_measurement: rpm
+    device_class: speed
+    state_class: measurement
+    icon: 'mdi:fan'
+    skip_updates: 1
+  - name: Main Eev1
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_main_eev1
+    register_type: holding
+    address: 23
+    value_type: U_WORD
+    unit_of_measurement: state
+    device_class: measurement
+    state_class: measurement
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Outdoor Error Code
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_outdoor_error_code
+    register_type: holding
+    address: 24
+    value_type: U_WORD
+    icon: 'mdi:alert-circle'
+    skip_updates: 1
+  - name: Compressor Order Frequency
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_order_frequency
+    register_type: holding
+    address: 25
+    value_type: U_WORD
+    unit_of_measurement: Hz
+    device_class: frequency
+    state_class: measurement
+    accuracy_decimals: 1
+    icon: 'mdi:air-conditioner'
+    skip_updates: 1
+  - name: Compressor Target Frequency
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_target_frequency
+    register_type: holding
+    address: 26
+    value_type: U_WORD
+    unit_of_measurement: Hz
+    device_class: frequency
+    state_class: measurement
+    accuracy_decimals: 1
+    icon: 'mdi:air-conditioner'
+    skip_updates: 1
+  - name: Compressor Current Frequency
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_current_frequency
+    register_type: holding
+    address: 27
+    value_type: U_WORD
+    unit_of_measurement: Hz
+    device_class: frequency
+    state_class: measurement
+    accuracy_decimals: 1
+    icon: 'mdi:air-conditioner'
+    skip_updates: 1
+  - name: Dc Link 1 Voltage
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_dc_link_1_voltage
+    register_type: holding
+    address: 28
+    value_type: U_WORD
+    unit_of_measurement: V
+    device_class: voltage
+    state_class: measurement
+    icon: 'mdi:flash'
+    skip_updates: 1
+  - name: Outdoor Fan Speed
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_outdoor_fan_speed
+    register_type: holding
+    address: 29
+    value_type: U_WORD
+    unit_of_measurement: rpm
+    device_class: speed
+    state_class: measurement
+    icon: 'mdi:fan'
+    skip_updates: 1
+  - name: Eva In Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_eva_in_temperature
+    register_type: holding
+    address: 30
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Imp1 Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_imp1_temperature
+    register_type: holding
+    address: 31
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Compressor Oct1
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_oct1
+    register_type: holding
+    address: 32
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Compressor Top Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_compressor_top_temperature
+    register_type: holding
+    address: 33
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: High Pressure Saturation Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_high_pressure_saturation_temperature
+    register_type: holding
+    address: 34
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Low Pressure Saturation Temperature
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_low_pressure_saturation_temperature
+    register_type: holding
+    address: 35
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Error Code
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_error_code
+    register_type: holding
+    address: 63
+    value_type: U_WORD
+    icon: 'mdi:alert-circle'
+  - name: Restrictions
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_restrictions
+    register_type: holding
+    address: 64
+    value_type: U_WORD
+    icon: 'mdi:information'
+  - name: Water In Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_in_temp
+    register_type: holding
+    address: 65
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Out Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_out_temp
+    register_type: holding
+    address: 66
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Out Set Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_out_set_temp
+    register_type: holding
+    address: 68
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Hot Water Mode
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_hot_water_mode
+    register_type: holding
+    address: 73
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: 3 Way Valve Position
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_3_way_valve_position
+    register_type: holding
+    address: 82
+    value_type: U_WORD
+    icon: 'mdi:pipe-valve'
+  - name: Backup Heater
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_backup_heater
+    register_type: holding
+    address: 83
+    value_type: U_WORD
+    icon: 'mdi:radiator'
+  - name: Booster Heater
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_booster_heater
+    register_type: holding
+    address: 84
+    value_type: U_WORD
+    icon: 'mdi:radiator'
+  - name: Pump Pwm
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_pump_pwm
+    register_type: holding
+    address: 85
+    value_type: U_WORD
+    unit_of_measurement: '%'
+    device_class: power_factor
+    state_class: measurement
+    icon: 'mdi:pump'
+  - name: Controller Sensor Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_controller_sensor_temp
+    register_type: holding
+    address: 87
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Out Target
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_out_target
+    register_type: holding
+    address: 89
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Law Target
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_law_target
+    register_type: holding
+    address: 90
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Law Target Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_law_target_temp
+    register_type: holding
+    address: 91
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Mixing Valve Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_mixing_valve_temp
+    register_type: holding
+    address: 92
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Modulation Fan Percent
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_modulation_fan_percent
+    register_type: holding
+    address: 93
+    value_type: U_WORD
+    unit_of_measurement: '%'
+    device_class: power_factor
+    state_class: measurement
+    icon: 'mdi:fan'
+  - name: Water Zone 1 Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_zone_1_temp
+    register_type: holding
+    address: 94
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Zone 2 Temp
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_zone_2_temp
+    register_type: holding
+    address: 95
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Zone 1 Temp F
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_zone_1_temp_f
+    register_type: holding
+    address: 96
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Zone 2 Temp F
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_zone_2_temp_f
+    register_type: holding
+    address: 97
+    value_type: U_WORD
+    unit_of_measurement: °C
+    device_class: temperature
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 1
+    icon: 'mdi:thermometer'
+    skip_updates: 1
+  - name: Water Flow
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_water_flow
+    register_type: holding
+    address: 98
+    value_type: U_WORD
+    unit_of_measurement: l/min
+    device_class: water
+    state_class: measurement
+    filters:
+      - 
+        multiply: 0.1
+    accuracy_decimals: 2
+    icon: 'mdi:water-flow'
+    skip_updates: 1
+  - name: Fr Controll
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_fr_controll
+    register_type: holding
+    address: 99
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Enum In Chiller Setting Demand Level
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_enum_in_chiller_setting_demand_level
+    register_type: holding
+    address: 100
+    value_type: U_WORD
+    icon: 'mdi:information'
+    skip_updates: 1
+  - name: Var In Modulating Valve 1
+    platform: modbus_controller
+    modbus_controller_id: heatpump
+    id: ehs_var_in_modulating_valve_1
+    register_type: holding
+    address: 101
+    value_type: U_WORD
+    icon: 'mdi:pipe-valve'
+    skip_updates: 1
+climate:
+  - name: Zone 1 Underfloor
+    platform: thermostat
+    id: ehs_zone_1_underfloor
+    sensor: ehs_zone_1_underfloor_temp
+    min_temperature: 20
+    max_temperature: 40
+    temperature_step: 0.5
+    heat_action:
+      switch.turn_on: ehs_zone_1_underfloor_heat
+    idle_action:
+      switch.turn_off: ehs_zone_1_underfloor_heat
+  - name: Hot Water Set
+    platform: thermostat
+    id: ehs_hot_water_set
+    sensor: ehs_hot_water_set_temp
+    min_temperature: 35
+    max_temperature: 55
+    temperature_step: 0.5
+  - name: Zone 2 Radiator
+    platform: thermostat
+    id: ehs_zone_2_radiator
+    sensor: ehs_zone_2_radiator_temp
+    min_temperature: 15
+    max_temperature: 50
+    temperature_step: 0.5
+    heat_action:
+      switch.turn_on: ehs_zone_2_radiator_heat
+    idle_action:
+      switch.turn_off: ehs_zone_2_radiator_heat

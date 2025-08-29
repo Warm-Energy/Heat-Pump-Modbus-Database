@@ -1,0 +1,596 @@
+{
+  "make": "samsung",
+  "modbus": {
+    "models": [
+      "AE080BXYDEG/EU",
+      "AE120BXYDEG/EU",
+      "AE140BXYDEG/EU",
+      "AE080BXYDGG/EU",
+      "AE120BXYDGG/EU",
+      "AE140BXYDGG/EU",
+      "AE050CXYDEK/EU",
+      "AE080CXYDEK/EU",
+      "AE120CXYDEK/EU",
+      "AE160CXYDEK/EU",
+      "AE080CXYDGK/EU",
+      "AE120CXYDGK/EU",
+      "AE160CXYDGK/EU",
+      "AE050CXYBEK/EU",
+      "AE080CXYBEK/EU",
+      "AE120CXYBEK/EU",
+      "AE160CXYBEK/EU",
+      "AE080CXYBGK/EU",
+      "AE120CXYBGK/EU",
+      "AE160CXYBGK/EU"
+    ],
+    "connection": {
+      "baudrate": 9600,
+      "bytesize": 8,
+      "parity": "E",
+      "stopbits": 1,
+      "method": "rtu",
+      "timeout": 5,
+      "delay": 0,
+      "message_wait_milliseconds": 30
+    },
+    "unlock_registers": {
+      "description": "These registers need to be set to unlock some modbus data",
+      "register_7000": {
+        "address": 7000,
+        "values": [
+          {"hex": "0x4067", "decimal": 82, "description": "3 way valve position"},
+          {"hex": "0x406C", "decimal": 83, "description": "Backup_Heater read-only"},
+          {"hex": "0x4087", "decimal": 84, "description": "Booster"},
+          {"hex": "0x40C4", "decimal": 85, "description": "PWM Water Pump"},
+          {"hex": "0x411E", "decimal": 86, "description": "Zone_2 ON/OFF"},
+          {"hex": "0x4203", "decimal": 87, "description": "Controller Room Temp Sensor"},
+          {"hex": "0x4239", "decimal": 88, "description": "Heater Sensor Temp"},
+          {"hex": "0x4247", "decimal": 89, "description": "VAR_IN_TEMP_WATER_OUTLET_TARGET_F"},
+          {"hex": "0x4248", "decimal": 90, "description": "VAR_IN_TEMP_WATER_LAW_TARGET_F"},
+          {"hex": "0x427F", "decimal": 91, "description": "VAR_IN_TEMP_WATER_LAW_F"},
+          {"hex": "0x428C", "decimal": 92, "description": "Mixing Valve Temp"},
+          {"hex": "0x42CC", "decimal": 93, "description": "VAR_IN_MODULATING_FAN"},
+          {"hex": "0x42D6", "decimal": 94, "description": "Zone_2 Set Room temp"},
+          {"hex": "0x42D7", "decimal": 95, "description": "Zone_2 Set Water temp"},
+          {"hex": "0x42D8", "decimal": 96, "description": "VAR_IN_TEMP_WATER_OUTLET_ZONE1_F"},
+          {"hex": "0x42D9", "decimal": 97, "description": "VAR_IN_TEMP_WATER_OUTLET_ZONE2_F"},
+          {"hex": "0x42E9", "decimal": 98, "description": "Water_flow"},
+          {"hex": "0x42F1", "decimal": 99, "description": "FR controll"}
+        ]
+      },
+      "register_6000": {
+        "address": 6000,
+        "values": [
+          {"hex": "0x8001", "decimal": 4, "description": "Test"},
+          {"hex": "0x8001", "decimal": 5, "description": "Operation Mode"},
+          {"hex": "0x8010", "decimal": 6, "description": "Compressor 1 Status5"},
+          {"hex": "0x8017", "decimal": 7, "description": "Hot Gas 1 Status"},
+          {"hex": "0x8019", "decimal": 8, "description": "Liquid Valuve Status"},
+          {"hex": "0x8021", "decimal": 9, "description": "EVI Bypass"},
+          {"hex": "0x801A", "decimal": 10, "description": "4-way Valve Status"},
+          {"hex": "0x80AF", "decimal": 11, "description": "Base Heater"},
+          {"hex": "0x80D7", "decimal": 12, "description": "PHE Heater"},
+          {"hex": "0x8204", "decimal": 13, "description": "Outdoor temperature"},
+          {"hex": "0x8206", "decimal": 14, "description": "High Pressure"},
+          {"hex": "0x8208", "decimal": 15, "description": "Low Pressure"},
+          {"hex": "0x820A", "decimal": 16, "description": "Discharge 1 Temperature"},
+          {"hex": "0x8217", "decimal": 17, "description": "Compressor 1 Current"},
+          {"hex": "0x8218", "decimal": 18, "description": "Heat exchanger outlet temperature (condout)"},
+          {"hex": "0x821A", "decimal": 19, "description": "Suction Temperature"},
+          {"hex": "0x821E", "decimal": 20, "description": "EVI In Temperature"},
+          {"hex": "0x8220", "decimal": 21, "description": "EVI Out Temperature"},
+          {"hex": "0x8226", "decimal": 22, "description": "fanstep1"},
+          {"hex": "0x8229", "decimal": 23, "description": "Main EEV1"},
+          {"hex": "0x8235", "decimal": 24, "description": "Error Code"},
+          {"hex": "0x8236", "decimal": 25, "description": "Compressor 1 Order Frequency"},
+          {"hex": "0x8237", "decimal": 26, "description": "Compressor 1 Target Frequency"},
+          {"hex": "0x8238", "decimal": 27, "description": "Compressor 1 Current Frequency"},
+          {"hex": "0x823B", "decimal": 28, "description": "DC Link 1 Voltage"},
+          {"hex": "0x823D", "decimal": 29, "description": "Outdoor Fan1 RPM"},
+          {"hex": "0x82DE", "decimal": 30, "description": "EVA In Temperature"},
+          {"hex": "0x8254", "decimal": 31, "description": "IPM1 Temperature"},
+          {"hex": "0x8278", "decimal": 32, "description": "Compressor OCT1"},
+          {"hex": "0x8280", "decimal": 33, "description": "Compressor 1 Top Temperature"},
+          {"hex": "0x829F", "decimal": 34, "description": "High pressure saturation temperature"},
+          {"hex": "0x82A0", "decimal": 35, "description": "Low pressure saturation temperature"}
+        ]
+      }
+    },
+    "registers": {
+      "switches": [
+        {
+          "name": "EHS_Quiet_Control",
+          "address": 78,
+          "write_type": "holding",
+          "command_on": 1,
+          "command_off": 0,
+          "verify": {
+            "input_type": "holding",
+            "address": 78,
+            "delay": 1,
+            "state_on": 1,
+            "state_off": 0
+          }
+        },
+        {
+          "name": "EHS_Away_function",
+          "address": 79,
+          "write_type": "holding",
+          "command_on": 1,
+          "command_off": 0,
+          "verify": {
+            "input_type": "holding",
+            "address": 79,
+            "delay": 1,
+            "state_on": 1,
+            "state_off": 0
+          }
+        },
+        {
+          "name": "EHS_Buzzer",
+          "address": 3,
+          "write_type": "holding",
+          "command_on": 0,
+          "command_off": 1
+        },
+        {
+          "name": "EHS_Brauchwasser",
+          "address": 72,
+          "write_type": "holding",
+          "command_on": 1,
+          "command_off": 0,
+          "verify": {
+            "input_type": "holding",
+            "address": 72,
+            "delay": 1,
+            "state_on": 1,
+            "state_off": 0
+          }
+        }
+      ],
+      "sensors": [
+        {
+          "name": "EHS_Modbus_Interface_Error",
+          "address": 0
+        },
+        {
+          "name": "EHS_Outdoor_Unit_Error",
+          "address": 1
+        },
+        {
+          "name": "EHS_Defrost_Operation",
+          "address": 2
+        },
+        {
+          "name": "EHS_Outside_Test",
+          "address": 4,
+          "unit": "°C",
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_Operation_Mode",
+          "address": 5,
+          "scan_interval": 30,
+          "common_interface": "operating_mode"
+        },
+        {
+          "name": "EHS_Compressor_Status",
+          "address": 6,
+          "scan_interval": 30,
+          "common_interface": "compressor_status"
+        },
+        {
+          "name": "EHS_Hot_Gas_Status",
+          "address": 7,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Liquid_Valuve_Status",
+          "address": 8,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_EVI_Bypass",
+          "address": 9,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_4-way_Valve_Status",
+          "address": 10,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Base_Heater",
+          "address": 11,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_PHE_Heater",
+          "address": 12,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Outside_Temp",
+          "address": 13,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 2,
+          "common_interface": "outdoor_temperature"
+        },
+        {
+          "name": "EHS_High_Pressure",
+          "address": 14,
+          "unit": "kgfcm2",
+          "scale": 0.1,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Low_Pressure",
+          "address": 15,
+          "unit": "kgfcm2",
+          "scale": 0.1,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Discharge_Temp",
+          "address": 16,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1,
+          "common_interface": "discharge_temp"
+        },
+        {
+          "name": "EHS_Compressor_Current",
+          "address": 17,
+          "unit": "A",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Heat_exchanger_outlet_temperature_condout",
+          "address": 18,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Suction_Temperature",
+          "address": 19,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1,
+          "common_interface": "suction_temp"
+        },
+        {
+          "name": "EHS_EVI_In_Temperature",
+          "address": 20,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_EVI_Out_Temperature",
+          "address": 21,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Modulation_Fan",
+          "address": 22,
+          "unit": "rpm",
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_Main_EEV1",
+          "address": 23,
+          "unit": "state",
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Outdoor_Error_code",
+          "address": 24,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Compressor_Order_Frequency",
+          "address": 25,
+          "unit": "Hz",
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Compressor_Target_Frequency",
+          "address": 26,
+          "unit": "Hz",
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Compressor_Current_Frequency",
+          "address": 27,
+          "unit": "Hz",
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_DC_Link_1_Voltage",
+          "address": 28,
+          "unit": "V",
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Outdoor_Fan_speed",
+          "address": 29,
+          "unit": "rpm",
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_EVA_In_Temperature",
+          "address": 30,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_IMP1_Temperature",
+          "address": 31,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Compressor_OCT1",
+          "address": 32,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30
+        },
+        {
+          "name": "EHS_Compressor_Top_Temperature",
+          "address": 33,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_High_pressure_saturation_temperature",
+          "address": 34,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Low_pressure_saturation_temperature",
+          "address": 35,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Error_Code",
+          "address": 63,
+          "common_interface": "error_code"
+        },
+        {
+          "name": "EHS_Restrictions",
+          "address": 64
+        },
+        {
+          "name": "EHS_Water_IN_Temp",
+          "address": 65,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1,
+          "common_interface": "water_inlet_temp"
+        },
+        {
+          "name": "EHS_Water_OUT_Temp",
+          "address": 66,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1,
+          "common_interface": "water_outlet_temp"
+        },
+        {
+          "name": "EHS_Water_OUT_Set_Temp",
+          "address": 68,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1,
+          "common_interface": "water_outlet_target",
+          "description": "Current water outlet setpoint (read-only). Use climate target_temp_register (68) to control flow temperature"
+        },
+        {
+          "name": "EHS_Hot_Water_Mode",
+          "address": 73,
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_3_way_valve_position",
+          "address": 82
+        },
+        {
+          "name": "EHS_Backup_Heater",
+          "address": 83
+        },
+        {
+          "name": "EHS_Booster_Heater",
+          "address": 84
+        },
+        {
+          "name": "EHS_Pump_PWM",
+          "address": 85,
+          "unit": "%"
+        },
+        {
+          "name": "EHS_Controller_sensor_temp",
+          "address": 87,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Out_Target",
+          "address": 89,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Law_Target",
+          "address": 90,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Law_Target_temp",
+          "address": 91,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Mixing_valve_temp",
+          "address": 92,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Modulation_Fan_Percent",
+          "address": 93,
+          "unit": "%"
+        },
+        {
+          "name": "EHS_Water_Zone_1_temp",
+          "address": 94,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Zone_2_temp",
+          "address": 95,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Zone_1_temp_F",
+          "address": 96,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Zone_2_temp_F",
+          "address": 97,
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 20,
+          "precision": 1
+        },
+        {
+          "name": "EHS_Water_Flow",
+          "address": 98,
+          "unit": "l/min",
+          "scale": 0.1,
+          "scan_interval": 30,
+          "precision": 2,
+          "common_interface": "water_flow_rate"
+        },
+        {
+          "name": "EHS_FR_Controll",
+          "address": 99,
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_ENUM_IN_CHILLER_SETTING_DEMAND_LEVEL",
+          "address": 100,
+          "scan_interval": 20
+        },
+        {
+          "name": "EHS_VAR_IN_MODULATING_VALVE_1",
+          "address": 101,
+          "scan_interval": 20
+        }
+      ],
+      "climates": [
+        {
+          "name": "EHS_Zone_1_Underfloor",
+          "address": 96,
+          "scale": 0.1,
+          "max_temp": 40,
+          "min_temp": 20,
+          "scan_interval": 20,
+          "precision": 2,
+          "target_temp_register": 68,
+          "hvac_onoff_register": 52,
+          "hvac_mode_register": {
+            "address": 53,
+            "values": {
+              "state_auto": 0,
+              "state_cool": 1,
+              "state_heat": 4
+            }
+          },
+          "common_interface": "flow_temp_control",
+          "description": "Primary flow temperature control - register 68 controls the water outlet temperature"
+        },
+        {
+          "name": "EHS_Hot_Water_Set",
+          "address": 75,
+          "scale": 0.1,
+          "max_temp": 55,
+          "min_temp": 35,
+          "scan_interval": 20,
+          "precision": 1,
+          "target_temp_register": 74,
+          "hvac_onoff_register": 72
+        },
+        {
+          "name": "EHS_Zone_2_Radiator",
+          "address": 97,
+          "scale": 0.1,
+          "precision": 2,
+          "max_temp": 50,
+          "min_temp": 15,
+          "scan_interval": 20,
+          "target_temp_register": 95,
+          "hvac_mode_register": {
+            "address": 86,
+            "values": {
+              "state_off": 0,
+              "state_heat": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}

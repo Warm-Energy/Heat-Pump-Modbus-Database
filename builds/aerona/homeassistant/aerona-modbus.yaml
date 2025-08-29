@@ -1,0 +1,152 @@
+- name: aerona
+  type: serial
+  port: /dev/ttyUSB0
+  baudrate: 19200
+  bytesize: 8
+  method: rtu
+  parity: N
+  stopbits: 2
+  delay: 0
+  message_wait_milliseconds: 30
+  timeout: 5
+  switches:
+    - 
+      name: Reboot_Operation
+      slave: 2
+      address: 1
+      write_type: coil
+      command_on: 1
+      command_off: 0
+      unique_id: Reboot_Operation
+    - 
+      name: Anti_Legionella_Function
+      slave: 2
+      address: 6
+      write_type: coil
+      command_on: 1
+      command_off: 0
+      unique_id: Anti_Legionella_Function
+  sensors:
+    - 
+      name: Return_Water_Temperature
+      slave: 2
+      address: 0
+      unit_of_measurement: °C
+      scale: 1
+      scan_interval: 30
+      precision: 1
+      unique_id: Return_Water_Temperature
+    - 
+      name: Outdoor_Air_Temperature
+      slave: 2
+      address: 6
+      unit_of_measurement: °C
+      scale: 1
+      scan_interval: 30
+      precision: 1
+      unique_id: Outdoor_Air_Temperature
+    - 
+      name: Outgoing_Water_Temperature
+      slave: 2
+      address: 9
+      unit_of_measurement: °C
+      scale: 1
+      scan_interval: 30
+      precision: 1
+      unique_id: Outgoing_Water_Temperature
+    - 
+      name: Zone1_Room_Temperature
+      slave: 2
+      address: 11
+      unit_of_measurement: °C
+      scale: 0.1
+      scan_interval: 60
+      precision: 1
+      unique_id: Zone1_Room_Temperature
+    - 
+      name: Zone2_Room_Temperature
+      slave: 2
+      address: 12
+      unit_of_measurement: °C
+      scale: 0.1
+      scan_interval: 60
+      precision: 1
+      unique_id: Zone2_Room_Temperature
+    - 
+      name: DHW_Tank_Temperature
+      slave: 2
+      address: 16
+      unit_of_measurement: °C
+      scale: 1
+      scan_interval: 60
+      precision: 1
+      unique_id: DHW_Tank_Temperature
+    - 
+      name: Operating_Mode
+      slave: 2
+      address: 10
+      scan_interval: 30
+      unique_id: Operating_Mode
+    - 
+      name: DHW_Operating_Mode
+      slave: 2
+      address: 13
+      scan_interval: 60
+      unique_id: DHW_Operating_Mode
+    - 
+      name: Current_Error_Code
+      slave: 2
+      address: 21
+      scan_interval: 60
+      unique_id: Current_Error_Code
+  climates:
+    - 
+      name: Heating_Zone_1
+      slave: 2
+      address: 11
+      scale: 0.1
+      max_temp: 30
+      min_temp: 10
+      scan_interval: 60
+      precision: 1
+      target_temp_register: 2
+      hvac_mode_register:
+        address: 10
+        values:
+          state_off: 0
+          state_heat: 1
+          state_cool: 2
+      unique_id: Heating_Zone_1
+    - 
+      name: Heating_Zone_2
+      slave: 2
+      address: 12
+      scale: 0.1
+      max_temp: 30
+      min_temp: 10
+      scan_interval: 60
+      precision: 1
+      target_temp_register: 7
+      hvac_mode_register:
+        address: 10
+        values:
+          state_off: 0
+          state_heat: 1
+          state_cool: 2
+      unique_id: Heating_Zone_2
+    - 
+      name: DHW_Control
+      slave: 2
+      address: 16
+      scale: 1
+      max_temp: 60
+      min_temp: 40
+      scan_interval: 60
+      precision: 1
+      target_temp_register: 27
+      hvac_mode_register:
+        address: 13
+        values:
+          state_off: 0
+          state_heat: 1
+      unique_id: DHW_Control

@@ -1,0 +1,543 @@
+{
+  "make": "aerona",
+  "modbus": {
+    "models": ["Chofu/Grant Aerona3"],
+    "connection": {
+      "baudrate": 19200,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 2,
+      "method": "rtu",
+      "timeout": 5,
+      "delay": 0,
+      "message_wait_milliseconds": 30
+    },
+    "registers": {
+      "input_registers": [
+        {
+          "name": "Return_Water_Temperature",
+          "address": 0,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Return water temperature",
+          "common_interface": "water_inlet_temp"
+        },
+        {
+          "name": "Discharge_Temperature",
+          "address": 2,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Discharge temperature",
+          "common_interface": "discharge_temp"
+        },
+        {
+          "name": "Defrost_Temperature",
+          "address": 5,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Defrost temperature"
+        },
+        {
+          "name": "Outdoor_Air_Temperature",
+          "address": 6,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Outdoor air temperature",
+          "common_interface": "outdoor_temperature"
+        },
+        {
+          "name": "Suction_Temperature",
+          "address": 8,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Suction temperature",
+          "common_interface": "suction_temp"
+        },
+        {
+          "name": "Outgoing_Water_Temperature",
+          "address": 9,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Outgoing water temperature",
+          "common_interface": "water_outlet_temp"
+        },
+        {
+          "name": "Operating_Mode",
+          "address": 10,
+          "register_type": "input",
+          "description": "Operating mode: 0=Off, 1=Heating, 2=Cooling",
+          "common_interface": "operating_mode"
+        },
+        {
+          "name": "Zone1_Room_Temperature",
+          "address": 11,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 0.1,
+          "description": "Zone 1 room temperature",
+          "common_interface": "zone1_room_temp"
+        },
+        {
+          "name": "Zone2_Room_Temperature",
+          "address": 12,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 0.1,
+          "description": "Zone 2 room temperature",
+          "common_interface": "zone2_room_temp"
+        },
+        {
+          "name": "DHW_Operating_Mode",
+          "address": 13,
+          "register_type": "input",
+          "description": "DHW mode: 0=Disable, 1=Comfort, 2=Economy, 3=Force"
+        },
+        {
+          "name": "DHW_Tank_Temperature",
+          "address": 16,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "DHW tank temperature",
+          "common_interface": "dhw_tank_temp"
+        },
+        {
+          "name": "Humidity_Sensor",
+          "address": 20,
+          "register_type": "input",
+          "unit": "%",
+          "description": "Humidity sensor reading"
+        },
+        {
+          "name": "Current_Error_Code",
+          "address": 21,
+          "register_type": "input",
+          "description": "Current error code",
+          "common_interface": "error_code"
+        },
+        {
+          "name": "Previous_Error_Code_1",
+          "address": 22,
+          "register_type": "input",
+          "description": "Previous error code 1"
+        },
+        {
+          "name": "Previous_Error_Code_2",
+          "address": 23,
+          "register_type": "input",
+          "description": "Previous error code 2"
+        },
+        {
+          "name": "Previous_Error_Code_3",
+          "address": 24,
+          "register_type": "input",
+          "description": "Previous error code 3"
+        },
+        {
+          "name": "Previous_Error_Code_4",
+          "address": 25,
+          "register_type": "input",
+          "description": "Previous error code 4"
+        },
+        {
+          "name": "Previous_Error_Code_5",
+          "address": 26,
+          "register_type": "input",
+          "description": "Previous error code 5"
+        },
+        {
+          "name": "Plate_Heat_Exchanger_Temperature",
+          "address": 32,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "description": "Plate heat exchanger temperature"
+        }
+      ],
+      "holding_registers": [
+        {
+          "name": "Heating_Zone1_Fixed_Water_Setpoint",
+          "address": 2,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Fixed outgoing water set point for heating zone 1"
+        },
+        {
+          "name": "Heating_Zone1_Max_Water_Temperature",
+          "address": 3,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Maximum outgoing water temperature for heating zone 1"
+        },
+        {
+          "name": "Heating_Zone1_Min_Water_Temperature",
+          "address": 4,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Minimum outgoing water temperature for heating zone 1"
+        },
+        {
+          "name": "Heating_Zone1_Max_Outdoor_Temperature",
+          "address": 5,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Maximum outdoor air temperature correlation for heating zone 1"
+        },
+        {
+          "name": "Heating_Zone1_Min_Outdoor_Temperature",
+          "address": 6,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Minimum outdoor air temperature correlation for heating zone 1"
+        },
+        {
+          "name": "Heating_Zone2_Fixed_Water_Setpoint",
+          "address": 7,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Fixed outgoing water set point for heating zone 2"
+        },
+        {
+          "name": "Heating_Zone2_Max_Water_Temperature",
+          "address": 8,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Maximum outgoing water temperature for heating zone 2"
+        },
+        {
+          "name": "Heating_Zone2_Min_Water_Temperature",
+          "address": 9,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 25,
+          "max": 55,
+          "description": "Minimum outgoing water temperature for heating zone 2"
+        },
+        {
+          "name": "Heating_Zone2_Max_Outdoor_Temperature",
+          "address": 10,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Maximum outdoor air temperature correlation for heating zone 2"
+        },
+        {
+          "name": "Heating_Zone2_Min_Outdoor_Temperature",
+          "address": 11,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Minimum outdoor air temperature correlation for heating zone 2"
+        },
+        {
+          "name": "Cooling_Zone1_Fixed_Water_Setpoint",
+          "address": 13,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 5,
+          "max": 25,
+          "description": "Fixed outgoing water set point for cooling zone 1"
+        },
+        {
+          "name": "Cooling_Zone2_Fixed_Water_Setpoint",
+          "address": 18,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 5,
+          "max": 25,
+          "description": "Fixed outgoing water set point for cooling zone 2"
+        },
+        {
+          "name": "DHW_Priority",
+          "address": 26,
+          "register_type": "holding",
+          "description": "DHW production priority: 0=Standard, 1=Priority"
+        },
+        {
+          "name": "DHW_Comfort_Temperature",
+          "address": 27,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 40,
+          "max": 60,
+          "description": "DHW comfort temperature"
+        },
+        {
+          "name": "DHW_Economy_Temperature",
+          "address": 28,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 40,
+          "max": 60,
+          "description": "DHW economy temperature"
+        },
+        {
+          "name": "DHW_Force_Temperature",
+          "address": 29,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "min": 50,
+          "max": 70,
+          "description": "DHW force temperature"
+        },
+        {
+          "name": "Pump_Run_Time",
+          "address": 37,
+          "register_type": "holding",
+          "unit": "min",
+          "description": "Pump run time after compressor off"
+        },
+        {
+          "name": "Pump_Frequency",
+          "address": 38,
+          "register_type": "holding",
+          "unit": "Hz",
+          "description": "Pump frequency setting"
+        },
+        {
+          "name": "Compressor_Start_Delay",
+          "address": 39,
+          "register_type": "holding",
+          "unit": "min",
+          "description": "Compressor start delay"
+        },
+        {
+          "name": "Frost_Protection_Start_Temperature",
+          "address": 50,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Temperature at which frost protection starts"
+        },
+        {
+          "name": "Frost_Protection_Stop_Temperature",
+          "address": 51,
+          "register_type": "holding",
+          "unit": "°C",
+          "scale": 0.5,
+          "description": "Temperature at which frost protection stops"
+        }
+      ],
+      "coils": [
+        {
+          "name": "Erase_Error_History",
+          "address": 0,
+          "coil_type": "coil",
+          "description": "Erase error history"
+        },
+        {
+          "name": "Reboot_Operation",
+          "address": 1,
+          "coil_type": "coil",
+          "description": "Operation at reboot after blackout: 0=disable, 1=enable"
+        },
+        {
+          "name": "Heating_Zone1_Water_Setpoint_Mode",
+          "address": 2,
+          "coil_type": "coil",
+          "description": "0=Fixed set point, 1=Climatic curve"
+        },
+        {
+          "name": "Anti_Legionella_Function",
+          "address": 6,
+          "coil_type": "coil",
+          "description": "Anti-legionella function: 0=disable, 1=enable"
+        },
+        {
+          "name": "HP_Unit_Control_Mode",
+          "address": 7,
+          "coil_type": "coil",
+          "description": "HP unit turn on/off based on: 0=Room set point, 1=Water set point"
+        }
+      ],
+      "discrete_inputs": [
+        {
+          "name": "Configurable_Input_Heating_Enable",
+          "address": 3,
+          "discrete_type": "discrete",
+          "description": "Configurable input (terminal 20-21) / heating enable"
+        }
+      ],
+      "sensors": [
+        {
+          "name": "Return_Water_Temperature",
+          "address": 0,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "Outdoor_Air_Temperature",
+          "address": 6,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "Outgoing_Water_Temperature",
+          "address": 9,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "scan_interval": 30,
+          "precision": 1
+        },
+        {
+          "name": "Zone1_Room_Temperature",
+          "address": 11,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 60,
+          "precision": 1
+        },
+        {
+          "name": "Zone2_Room_Temperature",
+          "address": 12,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 0.1,
+          "scan_interval": 60,
+          "precision": 1
+        },
+        {
+          "name": "DHW_Tank_Temperature",
+          "address": 16,
+          "register_type": "input",
+          "unit": "°C",
+          "scale": 1,
+          "scan_interval": 60,
+          "precision": 1
+        },
+        {
+          "name": "Operating_Mode",
+          "address": 10,
+          "register_type": "input",
+          "scan_interval": 30
+        },
+        {
+          "name": "DHW_Operating_Mode",
+          "address": 13,
+          "register_type": "input",
+          "scan_interval": 60
+        },
+        {
+          "name": "Current_Error_Code",
+          "address": 21,
+          "register_type": "input",
+          "scan_interval": 60
+        }
+      ],
+      "switches": [
+        {
+          "name": "Reboot_Operation",
+          "address": 1,
+          "write_type": "coil",
+          "command_on": 1,
+          "command_off": 0
+        },
+        {
+          "name": "Anti_Legionella_Function",
+          "address": 6,
+          "write_type": "coil",
+          "command_on": 1,
+          "command_off": 0
+        }
+      ],
+      "climates": [
+        {
+          "name": "Heating_Zone_1",
+          "address": 11,
+          "register_type": "input",
+          "scale": 0.1,
+          "max_temp": 30,
+          "min_temp": 10,
+          "scan_interval": 60,
+          "precision": 1,
+          "target_temp_register": 2,
+          "target_temp_scale": 0.5,
+          "hvac_mode_register": {
+            "address": 10,
+            "values": {
+              "state_off": 0,
+              "state_heat": 1,
+              "state_cool": 2
+            }
+          }
+        },
+        {
+          "name": "Heating_Zone_2",
+          "address": 12,
+          "register_type": "input",
+          "scale": 0.1,
+          "max_temp": 30,
+          "min_temp": 10,
+          "scan_interval": 60,
+          "precision": 1,
+          "target_temp_register": 7,
+          "target_temp_scale": 0.5,
+          "hvac_mode_register": {
+            "address": 10,
+            "values": {
+              "state_off": 0,
+              "state_heat": 1,
+              "state_cool": 2
+            }
+          }
+        },
+        {
+          "name": "DHW_Control",
+          "address": 16,
+          "register_type": "input",
+          "scale": 1,
+          "max_temp": 60,
+          "min_temp": 40,
+          "scan_interval": 60,
+          "precision": 1,
+          "target_temp_register": 27,
+          "target_temp_scale": 0.5,
+          "hvac_mode_register": {
+            "address": 13,
+            "values": {
+              "state_off": 0,
+              "state_heat": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}
