@@ -1,6 +1,6 @@
 # ESPHome configuration for heat pump modbus interface
 # Generated from modbus register definitions
-# Date: 2025-08-29 11:02:06
+# Date: 2025-08-29 20:40:36
 
 esphome:
   name: 'aerona-modbus'

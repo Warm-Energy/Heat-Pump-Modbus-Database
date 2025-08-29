@@ -1,0 +1,101 @@
+- name: Midea/Systemair
+  type: serial
+  port: /dev/ttyUSB0
+  baudrate: 9600
+  bytesize: 8
+  method: rtu
+  parity: N
+  stopbits: 1
+  delay: 0
+  message_wait_milliseconds: 30
+  timeout: 5
+  switches:
+    - 
+      name: Floor_Heating_Power
+      slave: 2
+      address: 0
+      write_type: holding
+      unique_id: Floor_Heating_Power
+    - 
+      name: Zone1_Power
+      slave: 2
+      address: 0
+      write_type: holding
+      unique_id: Zone1_Power
+    - 
+      name: DHW_Power
+      slave: 2
+      address: 0
+      write_type: holding
+      unique_id: DHW_Power
+    - 
+      name: Zone2_Power
+      slave: 2
+      address: 0
+      write_type: holding
+      unique_id: Zone2_Power
+    - 
+      name: Silent_Mode
+      slave: 2
+      address: 5
+      write_type: holding
+      unique_id: Silent_Mode
+    - 
+      name: ECO_Mode
+      slave: 2
+      address: 5
+      write_type: holding
+      unique_id: ECO_Mode
+    - 
+      name: Disinfect_Mode
+      slave: 2
+      address: 5
+      write_type: holding
+      unique_id: Disinfect_Mode
+    - 
+      name: Holiday_Away
+      slave: 2
+      address: 5
+      write_type: holding
+      unique_id: Holiday_Away
+  sensors:
+    - 
+      name: Compressor_Status
+      slave: 2
+      address: 101
+      unique_id: Compressor_Status
+    - 
+      name: Defrost_Status
+      slave: 2
+      address: 128
+      unique_id: Defrost_Status
+    - 
+      name: Anti_Freeze_Status
+      slave: 2
+      address: 128
+      unique_id: Anti_Freeze_Status
+  climates:
+    - 
+      name: Zone1_Climate
+      slave: 2
+      address: null
+      max_temp: 30
+      min_temp: 17
+      target_temp_register: 3
+      unique_id: Zone1_Climate
+    - 
+      name: Water_Flow_Climate
+      slave: 2
+      address: null
+      max_temp: 60
+      min_temp: 5
+      target_temp_register: 2
+      unique_id: Water_Flow_Climate
+    - 
+      name: DHW_Climate
+      slave: 2
+      address: null
+      max_temp: 60
+      min_temp: 40
+      target_temp_register: 4
+      unique_id: DHW_Climate

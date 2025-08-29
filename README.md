@@ -52,6 +52,7 @@ This database is actively used internally at **Warm Energy Labs Ltd** for our he
 |--------------|-------------|----------------|-------|
 | Samsung | **Gen 6 and Gen 7** | Tested | 20 models supported - see below |
 | Grant/Aerona | Aerona3 (Chofu) | Not Tested | Draft modbus mappings from reverse engineering, baudrate: 19200 |
+| Midea/Systemair | M-Thermal Series | Not Tested | Based on Systemair M-thermal controller manual, baudrate: 9600 |
 
 ### Samsung Supported Models
 
@@ -131,6 +132,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 This project was made possible thanks to the work of the following repositories:
 - [ZimKev/MIM-B19n_Modbus](https://github.com/ZimKev/MIM-B19n_Modbus) - Samsung heat pump Modbus documentation
 - [aerona-chofu-ashp/modbus](https://github.com/aerona-chofu-ashp/modbus) - Grant Aerona/Chofu heat pump Modbus mappings
+- Systemair M-thermal Operation Manual - Midea/Systemair heat pump Modbus register documentation
 
 ## Related Projects
 

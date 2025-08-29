@@ -1,0 +1,504 @@
+{
+  "make": "Midea/Systemair",
+  "info": {
+    "manufacturer": "Midea/Systemair",
+    "description": "M-Thermal heat pump series with wired controller",
+    "documentation": "Based on Systemair M-thermal Operation Manual",
+    "tested": false
+  },
+  "modbus": {
+    "models": [
+      "M-Thermal Series"
+    ],
+    "connection": {
+      "baudrate": 9600,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 1,
+      "method": "rtu"
+    },
+    "address_range": {
+      "start": 0,
+      "end": 16,
+      "default": 16,
+      "note": "Address set by DIP switch S3 on hydraulic module (0=address 16, 1-15=addresses 1-15)"
+    },
+    "registers": {
+      "holding_registers": [
+        {
+          "name": "Power_Control",
+          "address": 0,
+          "description": "Power on/off control",
+          "data_type": "uint16",
+          "read_write": "read_write",
+          "bits": {
+            "0": "Floor heating power (0=off, 1=on)",
+            "1": "Zone 1 power (0=off, 1=on)",
+            "2": "DHW power (0=off, 1=on)",
+            "3": "Zone 2 power (0=off, 1=on)"
+          }
+        },
+        {
+          "name": "Operating_Mode",
+          "address": 1,
+          "description": "Operating mode setting",
+          "data_type": "uint16",
+          "read_write": "read_write",
+          "values": {
+            "1": "Auto",
+            "2": "Cool",
+            "3": "Heat"
+          },
+          "common_interface": "operating_mode"
+        },
+        {
+          "name": "Water_Temperature_Setpoint",
+          "address": 2,
+          "description": "Water temperature setpoint T1s",
+          "unit": "°C",
+          "data_type": "int16",
+          "read_write": "read_write",
+          "scale": 1,
+          "common_interface": "water_outlet_target"
+        },
+        {
+          "name": "Room_Temperature_Setpoint",
+          "address": 3,
+          "description": "Room temperature setpoint Ts",
+          "unit": "°C",
+          "data_type": "int16",
+          "read_write": "read_write",
+          "scale": 1,
+          "min": 17,
+          "max": 30
+        },
+        {
+          "name": "DHW_Temperature_Setpoint",
+          "address": 4,
+          "description": "DHW tank temperature setpoint T5s",
+          "unit": "°C",
+          "data_type": "int16",
+          "read_write": "read_write",
+          "scale": 1,
+          "min": 40,
+          "max": 60,
+          "common_interface": "dhw_setpoint"
+        },
+        {
+          "name": "Function_Settings",
+          "address": 5,
+          "description": "Function settings",
+          "data_type": "uint16",
+          "read_write": "read_write",
+          "bits": {
+            "4": "Disinfect",
+            "5": "Holiday away",
+            "6": "Silent mode",
+            "7": "Silent mode level (0=level1, 1=level2)",
+            "8": "Holiday home",
+            "10": "ECO mode",
+            "11": "DHW pump constant temp recycling",
+            "12": "Curve setting enabled"
+          }
+        },
+        {
+          "name": "Curve_Selection",
+          "address": 6,
+          "description": "Weather compensation curve selection",
+          "data_type": "uint16",
+          "read_write": "read_write",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "input_registers": [
+        {
+          "name": "Compressor_Frequency",
+          "address": 100,
+          "description": "Compressor operating frequency",
+          "unit": "Hz",
+          "data_type": "uint16",
+          "scale": 1,
+          "common_interface": "compressor_frequency"
+        },
+        {
+          "name": "Actual_Operating_Mode",
+          "address": 101,
+          "description": "Actual operating mode",
+          "data_type": "uint16",
+          "values": {
+            "0": "Off",
+            "2": "Cooling",
+            "3": "Heating"
+          }
+        },
+        {
+          "name": "Fan_Speed",
+          "address": 102,
+          "description": "Fan speed",
+          "unit": "r/min",
+          "data_type": "uint16",
+          "scale": 1
+        },
+        {
+          "name": "PMV_Openness",
+          "address": 103,
+          "description": "Electronic expansion valve openness",
+          "unit": "P",
+          "data_type": "uint16",
+          "scale": 1
+        },
+        {
+          "name": "Water_Inlet_Temperature",
+          "address": 104,
+          "description": "Water inlet temperature TW_in",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "water_inlet_temp"
+        },
+        {
+          "name": "Water_Outlet_Temperature",
+          "address": 105,
+          "description": "Water outlet temperature TW_out",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "water_outlet_temp"
+        },
+        {
+          "name": "T3_Temperature",
+          "address": 106,
+          "description": "Condenser temperature T3",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1
+        },
+        {
+          "name": "Outdoor_Temperature",
+          "address": 107,
+          "description": "Outdoor ambient temperature T4",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "outdoor_temperature"
+        },
+        {
+          "name": "Discharge_Temperature",
+          "address": 108,
+          "description": "Compressor discharge temperature Tp",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "discharge_temp"
+        },
+        {
+          "name": "Return_Air_Temperature",
+          "address": 109,
+          "description": "Compressor return air temperature",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "suction_temp"
+        },
+        {
+          "name": "Total_Water_Outlet_Temperature",
+          "address": 110,
+          "description": "Total water outlet temperature T1",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1
+        },
+        {
+          "name": "Water_Outlet_After_Heater",
+          "address": 111,
+          "description": "Water outlet temperature after auxiliary heater T1B",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1
+        },
+        {
+          "name": "Refrigerant_Liquid_Temperature",
+          "address": 112,
+          "description": "Refrigerant liquid side temperature T2",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1
+        },
+        {
+          "name": "Refrigerant_Gas_Temperature",
+          "address": 113,
+          "description": "Refrigerant gas side temperature T2B",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1
+        },
+        {
+          "name": "Room_Temperature",
+          "address": 114,
+          "description": "Room temperature Ta",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "zone1_room_temp"
+        },
+        {
+          "name": "DHW_Tank_Temperature",
+          "address": 115,
+          "description": "Water tank temperature T5",
+          "unit": "°C",
+          "data_type": "int16",
+          "scale": 1,
+          "common_interface": "dhw_tank_temp"
+        },
+        {
+          "name": "High_Pressure",
+          "address": 116,
+          "description": "High pressure value",
+          "unit": "kPa",
+          "data_type": "uint16",
+          "scale": 1,
+          "common_interface": "high_pressure"
+        },
+        {
+          "name": "Low_Pressure",
+          "address": 117,
+          "description": "Low pressure value",
+          "unit": "kPa",
+          "data_type": "uint16",
+          "scale": 1,
+          "common_interface": "low_pressure"
+        },
+        {
+          "name": "Outdoor_Unit_Current",
+          "address": 118,
+          "description": "Outdoor unit operating current",
+          "unit": "A",
+          "data_type": "uint16",
+          "scale": 1,
+          "common_interface": "compressor_current"
+        },
+        {
+          "name": "Outdoor_Unit_Voltage",
+          "address": 119,
+          "description": "Outdoor unit voltage",
+          "unit": "V",
+          "data_type": "uint16",
+          "scale": 1
+        },
+        {
+          "name": "Compressor_Operating_Time",
+          "address": 122,
+          "description": "Compressor operating time",
+          "unit": "hours",
+          "data_type": "uint16",
+          "scale": 1
+        },
+        {
+          "name": "Current_Fault",
+          "address": 124,
+          "description": "Current fault code",
+          "data_type": "uint16",
+          "common_interface": "error_code"
+        },
+        {
+          "name": "Status_Bit_1",
+          "address": 128,
+          "description": "Status bits",
+          "data_type": "uint16",
+          "bits": {
+            "0": "Reserved",
+            "1": "Defrosting",
+            "2": "Anti-freezing",
+            "3": "Oil return",
+            "4": "Remote On/Off",
+            "5": "Outdoor unit test mode",
+            "6": "Room thermostat heating",
+            "7": "Room thermostat cooling",
+            "8": "Solar energy signal input",
+            "10": "SG normal electricity",
+            "11": "EUV free electricity"
+          }
+        },
+        {
+          "name": "Load_Output",
+          "address": 129,
+          "description": "Load output status",
+          "data_type": "uint16",
+          "bits": {
+            "0": "Electric heater IBH1",
+            "1": "Reserved",
+            "2": "Electric heater TBH",
+            "3": "Water pump PUMP_I",
+            "4": "SV1",
+            "6": "External water pump P_o",
+            "7": "Water return pump P_d",
+            "8": "Mixed water pump P_c",
+            "9": "SV2",
+            "10": "HEAT4",
+            "11": "Solar water pump",
+            "12": "ALARM",
+            "13": "RUN",
+            "14": "External heater",
+            "15": "DEFROST"
+          }
+        },
+        {
+          "name": "DC_Bus_Current",
+          "address": 133,
+          "description": "DC bus current",
+          "unit": "A",
+          "data_type": "uint16",
+          "scale": 1
+        },
+        {
+          "name": "DC_Bus_Voltage",
+          "address": 134,
+          "description": "DC bus voltage",
+          "unit": "V",
+          "data_type": "uint16",
+          "scale": 10
+        },
+        {
+          "name": "Water_Flow_Rate",
+          "address": 138,
+          "description": "Water flow rate",
+          "unit": "m³/h",
+          "data_type": "uint16",
+          "scale": 100,
+          "common_interface": "water_flow_rate"
+        },
+        {
+          "name": "Heat_Pump_Capacity",
+          "address": 140,
+          "description": "Heat pump capacity",
+          "unit": "kW",
+          "data_type": "uint16",
+          "scale": 100
+        }
+      ],
+      "switches": [
+        {
+          "name": "Floor_Heating_Power",
+          "address": 0,
+          "bit": 0,
+          "description": "Floor heating on/off"
+        },
+        {
+          "name": "Zone1_Power",
+          "address": 0,
+          "bit": 1,
+          "description": "Zone 1 heating/cooling on/off"
+        },
+        {
+          "name": "DHW_Power",
+          "address": 0,
+          "bit": 2,
+          "description": "Domestic hot water on/off"
+        },
+        {
+          "name": "Zone2_Power",
+          "address": 0,
+          "bit": 3,
+          "description": "Zone 2 heating/cooling on/off"
+        },
+        {
+          "name": "Silent_Mode",
+          "address": 5,
+          "bit": 6,
+          "description": "Silent mode on/off",
+          "common_interface": "quiet_mode"
+        },
+        {
+          "name": "ECO_Mode",
+          "address": 5,
+          "bit": 10,
+          "description": "ECO mode on/off"
+        },
+        {
+          "name": "Disinfect_Mode",
+          "address": 5,
+          "bit": 4,
+          "description": "Disinfection mode on/off",
+          "common_interface": "anti_legionella"
+        },
+        {
+          "name": "Holiday_Away",
+          "address": 5,
+          "bit": 5,
+          "description": "Holiday away mode",
+          "common_interface": "away_mode"
+        }
+      ],
+      "sensors": [
+        {
+          "name": "Compressor_Status",
+          "address": 101,
+          "description": "Compressor operating status",
+          "state_map": {
+            "0": "Off",
+            "2": "Cooling",
+            "3": "Heating"
+          },
+          "common_interface": "compressor_status"
+        },
+        {
+          "name": "Defrost_Status",
+          "address": 128,
+          "bit": 1,
+          "description": "Defrost mode active"
+        },
+        {
+          "name": "Anti_Freeze_Status",
+          "address": 128,
+          "bit": 2,
+          "description": "Anti-freeze protection active",
+          "common_interface": "frost_protection"
+        }
+      ],
+      "climates": [
+        {
+          "name": "Zone1_Climate",
+          "description": "Zone 1 climate control",
+          "current_temp_register": 114,
+          "target_temp_register": 3,
+          "mode_register": 1,
+          "mode_values": {
+            "off": 0,
+            "heat": 3,
+            "cool": 2,
+            "auto": 1
+          },
+          "min_temp": 17,
+          "max_temp": 30,
+          "temp_step": 1
+        },
+        {
+          "name": "Water_Flow_Climate",
+          "description": "Water flow temperature control",
+          "current_temp_register": 105,
+          "target_temp_register": 2,
+          "mode_register": 1,
+          "mode_values": {
+            "off": 0,
+            "heat": 3,
+            "cool": 2,
+            "auto": 1
+          },
+          "min_temp": 5,
+          "max_temp": 60,
+          "temp_step": 1
+        },
+        {
+          "name": "DHW_Climate",
+          "description": "Domestic hot water control",
+          "current_temp_register": 115,
+          "target_temp_register": 4,
+          "min_temp": 40,
+          "max_temp": 60,
+          "temp_step": 1
+        }
+      ]
+    }
+  }
+}
